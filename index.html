@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            background-color: #34495e;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1em;
+        }
+        
+        nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .post {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .post h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .post-date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        #jumpscare {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        #jumpscare.active {
+            display: flex;
+            animation: flash 0.1s infinite;
+        }
+        
+        @keyframes flash {
+            0%, 100% { background-color: black; }
+            50% { background-color: #ff0000; }
+        }
+        
+        #jumpscare img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📝 My Daily Blog</h1>
+        <p>Thoughts, tips, and stories</p>
+    </header>
+    
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    
+    <div class="container">
+        <div class="post">
+            <h2>How to Stay Productive in 2024</h2>
+            <p class="post-date">January 15, 2024</p>
+            <p>Productivity is key to success. In this post, I'll share some great tips for staying focused and achieving your goals...</p>
+        </div>
+        
+        <div class="post">
+            <h2>My Favorite Coffee Recipes</h2>
+            <p class="post-date">January 10, 2024</p>
+            <p>Coffee lovers, this one's for you! Here are some delicious recipes to try at home that will elevate your morning routine...</p>
+        </div>
+        
+        <div class="post">
+            <h2>Travel Tips for Budget Adventurers</h2>
+            <p class="post-date">January 5, 2024</p>
+            <p>Traveling doesn't have to break the bank. Learn how to explore the world while keeping your expenses low and having amazing experiences...</p>
+        </div>
+        
+        <div class="post">
+            <h2>Understanding Web Development</h2>
+            <p class="post-date">December 28, 2023</p>
+            <p>Web development is easier than you think! Let me break down the basics of HTML, CSS, and JavaScript to get you started...</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </footer>
+    
+    <div id="jumpscare">
+        <svg viewBox='0 0 200 200' style='width: 400px; height: 400px;'>
+            <circle cx='60' cy='60' r='25' fill='white'/>
+            <circle cx='140' cy='60' r='25' fill='white'/>
+            <circle cx='60' cy='60' r='15' fill='black'/>
+            <circle cx='140' cy='60' r='15' fill='black'/>
+            <circle cx='60' cy='60' r='8' fill='red'/>
+            <circle cx='140' cy='60' r='8' fill='red'/>
+            <polygon points='100,150 70,100 130,100' fill='red'/>
+            <path d='M 80 140 Q 100 160 120 140' stroke='red' fill='none' stroke-width='4'/>
+        </svg>
+    </div>
+    
+    <script>
+        function triggerJumpscare() {
+            const jumpscare = document.getElementById('jumpscare');
+            jumpscare.classList.add('active');
+            
+            const scareSound = new AudioContext().createOscillator();
+            
+            setTimeout(() => {
+                jumpscare.classList.remove('active');
+            }, 1500);
+        }
+        
+        function scheduleRandomJumpscare() {
+            const randomDelay = Math.random() * 15000 + 5000;
+            setTimeout(() => {
+                triggerJumpscare();
+                scheduleRandomJumpscare();
+            }, randomDelay);
+        }
+        
+        scheduleRandomJumpscare();
+        
+        document.addEventListener('click', () => {
+            if (Math.random() < 0.15) {
+                triggerJumpscare();
+            }
+        });
+    </script>
+</body>
+</html>
